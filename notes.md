@@ -16,6 +16,8 @@
 Call secondpdm
 Call sysvalprg
 ```
+- In case you disconnected/turned off your laptop before or sth, I think the best practice is to restart RDi to avoid confusion with saved states/files. It is easy to run into errors.
+- RDi is the main thing for use after lab 2. ACS is also called green screen since most texts are green by default. Refer also to my activation file.
 
 # lab2
 - workspace
@@ -40,6 +42,7 @@ call yourwork
 - lab3A and lab3B are also important for the midterm.
 - how to make your extra F3 disappear: assign the name field for F3 to ```IN79``` which is assigned to the sundry fees when you code the rpgle file.
 - where to put ```overlay```: actually only put in the result, and remember not to overlap ```SaleInfo``` and ```Result``` or Result replaces SaleInfo when you click. In other words, when IN79 is off, F3 with ```DSPATR(ND)``` is also off
+- For ```DCL-F yourfile workstn;```, do remember to, for instance, have both .dspf and .rpgle files in the same folder, or the rpgle won't detect the dspf file.
 
 # lab3B
 - how to call demo and your work 
@@ -51,6 +54,8 @@ call realestat2
 chgcurlib yourlibrary
 call yourwork
 ```
+- F6 is in SaleInfo and in red
 - in your rpgle, write something like a clear subroutine which is practically a function
-1. initialize agent rate right after first line
-2. 
+1. initialize agent rate (=5) right after first line, or 0.05 if you prefer not dealing with percentage when calculating costs
+2. refer to IN79 above
+3. indicators are basically like boolean or flags in C++ or Java. The difference is while IBM has iteration ```ITER``` and subroutine aka function ```BEGSR ENDSR```, it may look a little primitive to you. But think of it this way, Oracle SQL or IBM(!) SQL has no flag to use. I personally did DBS501 with a lot of pain.
