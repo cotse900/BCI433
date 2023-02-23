@@ -1,0 +1,10 @@
+/*******************************************/
+/* SECONDPDM.clle - second cl program      */
+/* Name: Chungon Tse 154928188             */
+/* Signature : ______________________      */
+/*******************************************/
+PGM
+WRKOBJPDM BC435B29
+DSPMSG
+WRKSPLF
+ENDPGM

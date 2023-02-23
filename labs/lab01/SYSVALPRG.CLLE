@@ -1,0 +1,16 @@
+/*********************************************************************/
+/* SYSVALPRG - display systems value                                 */
+/*                                                                   */
+/* Coded by: Chungon Tse 154928188                                   */
+/*                                                                   */
+/* Signature: ______________________                                 */
+/*********************************************************************/
+
+PGM
+DSPLIBL
+EDTLIBL
+DSPLIBL
+DSPSYSVAL QSYSLIBL
+DSPSYSVAL QUSRLIBL
+DSPSYSVAL QMODEL
+ENDPGM
