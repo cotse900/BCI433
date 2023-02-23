@@ -1,0 +1,74 @@
+     A          R SALEINFO                  CF03(03 'Exit Program')
+     A                                      CF06(06 'standard costs')
+     A                                  1 72DATE
+     A                                      EDTCDE(Y)
+     A                                  1  3USER
+     A                                  1 20'R E A L   E S T A T E   T R A N S -
+     A                                      A C T I O N'
+     A                                  4  3'House Price:'
+     A                                  7  3'Seller Principal Residence?'
+     A                                  9  3'Agent Commission %:'
+     A                                  7 45'First Time Buyer?'
+     A                                  9 51'C O S T S'
+     A                                 11 45'Legal Fees:'
+     A                                 12 45'Survey Fee:'
+     A                                 13 45'Title Insurance:'
+     A                                 14 45'Home Inspection:'
+     A                                 15  7'F3 - Exit'
+     A  79                                  DSPATR(ND)
+     A                                  2  4'CHUNGON TSE'
+     A                                      DSPATR(RI)
+     A            HOUSEPRICE     7Y 0B  4 16
+     A                                      EDTCDE(2 $)
+     A  81                                  DSPATR(RI)
+     A  81                                  DSPATR(PC)
+     A  79                                  DSPATR(PR)
+     A  81                              4 29'Value must not be zero'
+     A                                  6  3'S E L L E R'
+     A                                      DSPATR(RI)
+     A                                  6 45'B U Y E R'
+     A                                      DSPATR(RI)
+     A            RESIDENCE      1   B  7 31VALUES('Y' 'N')
+     A  82                                  DSPATR(RI)
+     A  82                                  DSPATR(PC)
+     A  79                                  DSPATR(PR)
+     A                                  7 34'Y or N'
+     A                                      TEXT('Residence')
+     A                                      DSPATR(RI)
+     A            TITLEINS       4Y 0B 13 65EDTCDE(2)
+     A  79                                  DSPATR(PR)
+     A            FIRSTTIME      1   B  7 63VALUES('Y' 'N')
+     A  83                                  DSPATR(RI)
+     A  83                                  DSPATR(PC)
+     A  79                                  DSPATR(PR)
+     A            SURVEYFEE      4Y 0B 12 65EDTCDE(2)
+     A  79                                  DSPATR(PR)
+     A            AGENTRATE      4Y 2B  9 23EDTCDE(1)
+     A  79                                  DSPATR(PR)
+     A            LEGALFEES      4Y 0B 11 65EDTCDE(2)
+     A  79                                  DSPATR(PR)
+     A            INSPECTION     4Y 0B 14 65EDTCDE(2)
+     A  79                                  DSPATR(PR)
+     A                                  7 66'Y or N'
+     A                                      TEXT('First time')
+     A                                      DSPATR(RI)
+     A                                 10 45'F6 - Use Standard Costs'
+     A                                      COLOR(RED)
+     A          R RESULT                    OVERLAY
+     A                                      CF03(03 'Exit Program')
+     A            COMMISSION     8  2O 16 27EDTCDE(1)
+     A            CAPITALGNS     8  2O 17 27EDTCDE(1)
+     A            SELLER         9  2O 20 25EDTCDE(1)
+     A            TOTALCOST      7  2O 16 66EDTCDE(1)
+     A            LANDTAX        8  2O 17 65EDTCDE(1)
+     A            BUYER          9  2O 20 63EDTCDE(1)
+     A                                 23  4'F3 - Exit'
+     A                                 20 11'Seller Nets:'
+     A                                 17  5'Capital Gains Tax:'
+     A                                 16  6'Commission Total:'
+     A                                 16 41'Total of Above Costs:'
+     A                                 17 41'Land Transfer Tax:'
+     A                                 20 48'Buyer Pays:'
+     A  99                             22 47'Unrealistic costs supplied'
+     A  99                                  DSPATR(RI)
+
