@@ -5,7 +5,7 @@
 # lab1
 - First, understand this course is about very old formats of a very old OS. Or it works like a separate OS unlike today's OS.
 - Library CRTLIB -> object CRTSRCPF -> member CLLE/PPGLE/JAVA/C…
-- STRPDM -> library (WRKLIBPDM)/object (WRKOBJPDM) /member (WRKMBRPDM)
+- ```STRPDM``` -> library (```WRKLIBPDM```)/object (```WRKOBJPDM```) /member (```WRKMBRPDM```)
 - They are all called CL commands
 - How to recognize objects of the same name (same userid) by object type:
 - BC435Bxx: *USRPRF, *LIB, *MSGQ, *OUTQ
@@ -16,15 +16,15 @@
 Call secondpdm
 Call sysvalprg
 ```
-- In case you disconnected/turned off your laptop before or sth, I think the best practice is to restart RDi to avoid confusion with saved states/files. It is easy to run into errors.
+- In case you disconnected/turned off your laptop before or sth, I think the best practice is to restart RDi to avoid confusion with saved states/files. It is easy to run into errors. See also lab files on the subject of RemoteSystemsTempFiles.
 - RDi is the main thing for use after lab 2. ACS is also called green screen since most texts are green by default. Refer also to my activation file.
 
 # lab2
 - workspace
-- compile: rpgle->right click->compile->CRTBNDRPG
+- compile: rpgle->right click->compile->```CRTBNDRPG```
 - if successful, you can see ```students.*module``` under your personal library (commands log and error list are NOT sufficient) refer to the end of lab2
-- library list objects->right click->initial library list, bci433lib, call strjob
-- command run: runqry *n students, strsql, rdi students.*file.pf-dta ->right click->show in table->data
+- library list objects->right click->initial library list, bci433lib, ```call strjob```
+- command run: ```runqry *n students```, strsql, rdi students.*file.pf-dta ->right click->show in table->data
 - When viewing data in ACS, you can use “shift to column” and enter the column number (say, column 10, column 100…)
 - students file with records
 
@@ -59,3 +59,24 @@ call yourwork
 1. initialize agent rate (=5) right after first line, or 0.05 if you prefer not dealing with percentage when calculating costs
 2. refer to IN79 above
 3. indicators are basically like boolean or flags in C++ or Java. The difference is while IBM has iteration ```ITER``` and subroutine aka function ```BEGSR ENDSR```, it may look a little primitive to you. But think of it this way, Oracle SQL or IBM(!) SQL has no flag to use. I personally did DBS501 with a lot of pain.
+
+# lab4 / weeks 4-5
+- ```chgusrprf```
+- ```DSPUSRPRF USRPRF(Lydia_li) TYPE(*ALL) OUTPUT(*PRINT``` (keyword notation)
+- ```WRKMBRPDM```
+- Check Library QGPL for ```LAB4DSP```, or simply use RDi to know what it is (display file code)
+- ```chgcurlib bci433lib```
+- ```call lab4cl21``` (It is called Run Water Bill Application) (this is the closest thing in the official library)
+
+# lab5 / week 6
+- ```ADDLIBLE SENECAPAY``` for lab5, lab6
+- ```RUNQRY *N SENECAPAY/SHIFTWEEK``` (check lecture 5)
+- directory: SENECAPAY/SHIFTRATE
+- write ```PAYROLLPGM .rpgle```, this name
+- PAYRPT.prtf is the printer file
+- ```QGPL/PAYSUMMARY.dspf```  <- copy this code from the official library
+- ```Call payrollpgm```
+- Print just 20 lines: ```OVRPRTF``` overwrite printer file
+- ```RTVSYSVAL``` then F4 and then F4 whatever to find further values; ```RTVUSRPRF```
+- Test: official reference sheet
+- Example: ```DSPUSRPRF USRPRF TYPE OUTPUT```
