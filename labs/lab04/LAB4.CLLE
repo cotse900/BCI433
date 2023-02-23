@@ -1,0 +1,77 @@
+             PGM
+             DCLF       LAB4DSP
+             DCL        &PRVSIGN *Char 13
+             DCL        &Date *Char 13
+             DCL        &Time *Char 10
+             DCL        &MSGQ *Char 10
+             DCL        &MSGQLIB *Char 10
+             DCL        &QMAXSIGN *Char 6
+             DCL        &SYSLVL *Char 10
+             /*MAIN*/
+             SNDRCVF
+             DOWHILE    (&IN03 = '0')
+                Callsubr   initialize
+                Select
+                   When       &IN21 Call quscmdln
+                   When       (&option = '1' *or &option = '01') callsubr option1
+                   When       (&option = '2' *or &option = '02') callsubr option2
+                   When       (&option = '3' *or &option = '03') callsubr option3
+                   When       (&option = '4' *or &option = '04') callsubr option4
+                   When       (&option = '5' *or &option = '05') callsubr option5
+                   otherwise  do
+                      chgvar     &IN30 '1'
+                   enddo
+                endselect
+                sndrcvf
+             ENDDO
+
+             SUBR       option1 /*signed on user's message queue*/
+                RTVUSRPRF  MSGQ(&MSGQ) MSGQLIB(&MSGQLIB)
+                chgvar     &msgtxt1   ('Signed on User''s message queue: is' *BCAT &MSGQLIB +
+                             *TCAT '/' *CAT &MSGQ)
+                chgvar     &MSGTXT2 ('CLLE Programs can report on and manage the users on the +
+                             system')
+             ENDSUBR
+
+             SUBR       option2 /*run real estate*/
+                call       realestate /*from lab3*/
+                chgvar     &IN03 '1'
+                chgvar     &MSGTXT1  ('Real Estate PRGLE program')
+                chgvar     &MSGTXT2  ('CLLE Programs can manage how an PRGLE Business +
+                             Application is run')
+             ENDSUBR
+
+             SUBR       option3 /*maximum invalid signon attempts allowed*/
+                RTVSYSVAL  SYSVAL(QMAXSIGN) RTNVAR(&QMAXSIGN)
+                chgvar     &MSGTXT1  ('Maximum invalid signons allowed:' *Bcat &QMAXSIGN *BCAT +
+                             '(tries)')
+                chgvar     &MSGTXT2  ('CLLE Programs can report on the system and manage +
+                             system wide settings')
+             ENDSUBR
+
+             SUBR       option4 /*previous sign on*/
+                RTVUSRPRF  PRVSIGN(&PRVSIGN)  USRPRF(*CURRENT)
+                RTVUSRPRF  RTNUSRPRF(&MSGQ)   USRPRF(*CURRENT)
+                chgvar     &DATE (%SST(&PRVSIGN 4 2) *CAT '/' *CAT %SST(&PRVSIGN 6 2) *CAT '/' +
+                             *CAT %SST(&PRVSIGN 2 2))
+                chgvar     &TIME (%SST(&PRVSIGN 8 2) *CAT ':' *CAT %SST(&PRVSIGN 10 2) *CAT +
+                             ':' *CAT %SST(&PRVSIGN 12 2))
+                chgvar     &MSGTXT1 ('Previous sign on for user ' *BCAT &MSGQ *BCAT 'was on ' +
+                             *CAT &DATE *BCAT &TIME)
+                chgvar     &MSGTXT2  ('CLLE Programs can report on and manage the users on the +
+                             system')
+             ENDSUBR
+
+             SUBR       option5 /*operating system level*/
+                RTVOBJD    OBJ(QSYS/QCMD) OBJTYPE(*PGM) SYSLVL(&SYSLVL)
+                chgvar     &MSGTXT1  ('The system level of the operating system is ' *BCAT +
+                             &SYSLVL)
+                chgvar     &MSGTXT2  ('CLLE Programs can report on system information')
+             ENDSUBR
+
+             SUBR       initialize
+                chgvar     &IN30 '0'
+                chgvar     &MSGTXT1 ' '
+                chgvar     &MSGTXT2 ' '
+             ENDSUBR
+             ENDPGM
