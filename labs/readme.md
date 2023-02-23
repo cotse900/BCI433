@@ -1,3 +1,15 @@
+# Export files
+- In RDi, File -> Export -> General -> File System -> Next -> 
+- My advice: if you select ```RemoteSystemsTempFiles```, you are likely to see, under Zeus (domain name of your class/course/school), things like ```QCLLESRC.FILE```, ```QDDSSRC.FILE```, ```QPRGLESRC.FILE```, and the file names may look confusing if you deleted or moved files before. At least I did this before.
+- So, what? In the above remote systems temp files, you may also see your current saved lab files, if you have any. Those are the ones you should export if you want.
+- Again, in the remote system, right click your file, and there is an option ```Make Available Offline```. Once you do, you may see these offline lines under ```File System``` above.
+
+## remove line numbers
+- In general, in exported ```.CLLE```, ```.DSPF```, ```.RPGLE```, ```.PRTF``` files, etc., every file starts with 12 numbers such as ```002100230216``` and it means 00 ```line 21``` 00 date ```230216```.
+- Regardless of file type, maybe a batch command may help: ```sed -i 's/^.\{12\}//' *.*``` (remove first 12 characters/replace with nothing).
+- That's just for easier reading outside RDi.
+
+
 # How-to
 
 ## save your workspace in a USB drive
