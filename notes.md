@@ -80,3 +80,24 @@ call yourwork
 - ```RTVSYSVAL``` then F4 and then F4 whatever to find further values; ```RTVUSRPRF```
 - Test: official reference sheet
 - Example: ```DSPUSRPRF USRPRF TYPE OUTPUT```
+
+# wrap up for midterm (labs 1-4)
+- compile display: ```CRTDSPF```
+- compile CL: ```CRTBNDCL```
+- compile RPGLE: ```CRTBNDRPG```
+- compile prtf: ```CRTPRTF```
+
+## how to write .dspf
+(assume 10 characters in ```Functions```)
+- You would see the top line as follows in RDi. If you have a test paper, this line may also appear.
+- ```.....AAN01N02N03..Name++++++RLen++TDpBLinPosFunctions++++++++++Comments+++++++++++++```
+- first ```A```: it appears in every line
+- 01 in ```N01```: indicators 01-99
+- ```..```after ```N03```: R means RECORD (very often default is RECORD1)
+- Name: the name of the record, and so on
+- ++ in ```Len++```: length
+- T: A
+- B after Dp: can be B..oth or O..utput
+- Lin: line
+- Pos: position, but this one is arbitrary/up to you
+- Functions: the exact functionality of it can be just a description that you give to a certain element.
