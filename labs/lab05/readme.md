@@ -19,3 +19,19 @@
 - Another compiling error is your REFFLD code above is jammed together, like 20+ characters, and it won't work in RDi. Sometimes, RDi can run a bug.
 
 - In 2023, think of unresolved reference as dead links. If it doesn't compile, it could be another RDi bug or your fault/you confused yourself/unclear instructions/un-updated/borderline misleading instructions.
+
+# declaring files
+- I personally captured my screens for reference. The notes say
+> Solve the SQL problem
+
+> Specifying RENAME option on the RPGLE file definition so that the format is defined with a different name internal to the RPG program:
+
+> KEYWORDS: RENAME(fileName:newRecName)
+
+- Apparently, while it is alright to declare ```SHIFTWEEK```, put it as input, put keyed, and rename it to something else, either you don't have to rename ```SHIFTRATES``` or you must to avoid compiling errors.
+
+```DCL-F SHIFTWEEK  USAGE(*INPUT) KEYED RENAME(SHIFTWEEK:SHIFTWEEKR);```
+
+```DCL-F SHIFTRATES DISK USAGE(*INPUT); // RENAME(SHIFTRATES:SHIFTRATER);```
+
+- My guess is it also changes every semester like DAYRATE and friends. You'll still have 00 Severity errors but they are perfectly fine.
