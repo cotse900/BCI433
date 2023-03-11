@@ -1,0 +1,7 @@
+             PGM
+             CALL       PGM(QGPL/STRJOB)
+             ADDLIBLE   BCI433LIB /*from lab4*/
+             ADDLIBLE   SENECAPAY /*added for lab5+6*/
+             MONMSG     MSGID(CPF2103)
+             DSPSYSLVL  OUTPUT(*DISPLAY)
+             ENDPGM
