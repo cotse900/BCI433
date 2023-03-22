@@ -68,7 +68,7 @@ call yourwork
 - ```chgcurlib bci433lib```
 - ```call lab4cl21``` (It is called Run Water Bill Application) (this is the closest thing in the official library)
 
-# lab5 / week 6
+# lab5+6 / week 6
 - ```ADDLIBLE SENECAPAY``` for lab5, lab6
 - ```RUNQRY *N SENECAPAY/SHIFTWEEK``` (check lecture 5)
 - directory: SENECAPAY/SHIFTRATE
@@ -101,3 +101,22 @@ call yourwork
 - Lin: line
 - Pos: position, but this one is arbitrary/up to you
 - Functions: the exact functionality of it can be just a description that you give to a certain element.
+
+# lab7 / week 9
+- To begin, use ```STRSQL``` and create your own database collection. (Recall database concepts from, say, DBS211) Remember the collection name and don't mix up with your home library name.
+- The gist of this lab is to use your collection, copy from ```BCI433LIB```'s ```SALESSTAFF``` as ```SALESSTAF2```, and make a journal applying changes through a RPG which is 90%+ done.
+- use ```WRKMBRPDM``` and copy from ```LAB7CODE```
+- The printer file this time is free and complete. The RPG and CLLE only miss a few lines.
+```
+FULLKEY = TDept + TSalesId;
+CHAIN %KDS(FULLKEY) SALESSTAF2;
+```
+- ```FULLKEY``` is a composite key in database.
+- the next line is chaining the key data structure in the master file. As the complete code shows, the RPG here looks for master file's matching records to this composite key.
+- In the CLLE driver program this time, just write a ```CPYF``` command
+```
+CPYF       FROMFILE(BCI433LIB/SALESSTAFF) +
+           TOFILE(BCUB29/SALESSTAF2) MBROPT(*REPLACE) +
+           CRTFILE(*YES)
+```
+- The CLLE has a line on ```DSPJRN``` display journal.
