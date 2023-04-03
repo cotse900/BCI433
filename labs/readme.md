@@ -39,3 +39,11 @@
 - when you delete lines, some line numbers "disappear". To rearrange, use this:
 - Window -> Preferences -> Remote Systems -> Remote Systems LPEX Editor
 - check ```Resequence lines at save```
+
+# RDi V9.6 login error
+- Since you need to switch workspace at home or during the labs, it can happen that RDi crashes trying to load your workspace on your USB stick.
+- In that case, try to use the default workspace, usually on ```C:```, on a school computer's RDi
+- Connect to this default workspace with your login
+- ***When prompted, check "remember password". Login.***
+- Restart with your original USB workspace, say, on ```D:```.
+- This applies when you have used "remember password" for your workspace, and with a certain bug, RDi can fail to know if automatic password is needed, and causes some exception error.
