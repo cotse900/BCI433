@@ -1,0 +1,68 @@
+     A          R GETDATA                   CF03(03 'Exit Program')
+     A                                  2 56DATE
+     A                                      EDTCDE(Y)
+     A                                  2  7USER
+     A                                  2 29'SENECA WATER CORP.'
+     A                                  3  7'Chungon Tse'
+     A                                  4 26'  Quaterly Water Bill    '
+     A                                  5  7'Usage Amount'
+     A                                  6 10'Cubic Metres:'
+     A                                  9  7'Residential Zone:'
+     A                                 12 33'F3 - Exit'
+     A  44                                  DSPATR(ND)
+     A            CUBICM         3  0B  6 25
+     A  98                                  DSPATR(RI PC)
+     A  99                                  DSPATR(PR)
+     A            ZONE           1   B  9 25
+     A                                      RANGE('A' 'H')
+     A  97                                  DSPATR(RI PC)
+     A  99                                  DSPATR(PR)
+     A  98                              7  7'Negative or zero amounts not valid'
+     A  97                             10  7'Blank Zone not valid'
+     A  44                              6 40'Converts to gallons as:'
+     A  44        GALLONS        9Y 2O  6 64EDTCDE(1)
+     A          R SHOWRESULT                CF03(03 'Exit Program')
+     A                                      OVERLAY
+     A                                      CF04(04 'Reasons for high water bil-
+     A                                      l')
+     A                                 14 27'Water Charge:'
+     A            WATERCHG       7Y 2O 14 42EDTCDE(1 $)
+     A                                 15 27'Sewer Charge:'
+     A            SEWERCHG       7Y 2O 15 42EDTCDE(1 $)
+     A                                 16 14'Capital Cost Recovery Fee:'
+     A            CAPITALCST     7Y 2  16 42EDTCDE(1 $)
+     A                                 17 12'Total Quarterly Billing Due:'
+     A            TOTALDUE       8Y 2O 17 41EDTCDE(1 $)
+     A                                 19 17'Early Payment Discount:'
+     A            DISCOUNT       5Y 2O 19 45EDTCDE(1 $)
+     A                                 20 12'Total Discounted Amount Due:'
+     A            DUEAFTDSC      8Y 2  20 41EDTCDE(1 $)
+     A                                 24  8'F3 - Exit'
+     A                                 24 41'F4 - Why is my water bill so high?'
+     A  55                             22  3'Overuse of Water Warning - An Insp-
+     A                                      ector will determine if a fine is w-
+     A                                      arranted'
+     A          R INFO                      CF03(03 'Exit Program')
+     A                                  2  7'Several different issues can incre-
+     A                                      ase water consumption, such as:'
+     A                                  4 12'Leaking Faucets;'
+     A                                  5 12'Malfunctioning toilets;'
+     A                                  6 12'Furnace humidifier;'
+     A                                  7 12'Water softener system;'
+     A                                  8 12'Outdoor taps;'
+     A                                  9 12'An increase in the people in the h-
+     A                                      ome;_and/or'
+     A                                 10 12'New appliances that use water.'
+     A                                 12 14'F3 - Exit'
+     A                                 12 41'Enter - More Data Entry'
+
+     A*%%RS+<record-sequences>
+     A*%%RS+ <sequence name="Untitled">
+     A*%%RS+  <device type="display" width="80" height="24" />
+     A*%%RS+ </sequence>
+     A*%%RS+ <sequence name="Untitled1">
+     A*%%RS+  <device type="display" width="80" height="24" />
+     A*%%RS+  <record-write record-format="GETDATA" />
+     A*%%RS+  <record-write record-format="SHOWRESULT" />
+     A*%%RS+ </sequence>
+     A*%%RS </record-sequences>
