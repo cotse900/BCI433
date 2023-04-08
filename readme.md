@@ -9,3 +9,4 @@ https://students.senecacollege.ca/spaces/189/software/wiki/view/1342/software)
 
 - The Activation file is named RDI_RPG_COBOL_TOOLS_V9.6_AK_EMG.zip.
 - I hope it helps!
+- [My demo videos on YouTube](https://www.youtube.com/playlist?list=PLVlB5oZ-RCuOfGJEgo_pfiieVYeTbpBMQ)
