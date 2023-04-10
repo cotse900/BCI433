@@ -47,3 +47,20 @@
 - ***When prompted, check "remember password". Login.***
 - Restart with your original USB workspace, say, on ```D:```.
 - This applies when you have used "remember password" for your workspace, and with a certain bug, RDi can fail to know if automatic password is needed, and causes some exception error.
+
+# lab grades
+| Lab   | Grade |
+|-------|-------|
+| Lab0  | 1     |
+| Lab1  | 2     |
+| Lab2  | 2     |
+| Lab3a | 3     |
+| Lab3b | 3     |
+| Lab4  | 4     |
+| Lab5  | 4     |
+| Lab6  | 3     |
+| Lab7  | 3     |
+| Lab8  | 8     |
+| Lab9  | 4     |
+|-------|-------|
+| Total | 35    |
