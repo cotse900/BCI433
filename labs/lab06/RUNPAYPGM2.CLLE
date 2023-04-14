@@ -1,0 +1,60 @@
+             PGM
+             DCL        &SHIFT *CHAR 1
+             DCL        &SHIFTTYPE *CHAR 30
+             DCL        &OUTQ *CHAR 10
+             DCL        &OUTQLIB *CHAR 10
+             RTVUSRPRF  OUTQ(&OUTQ) OUTQLIB(&OUTQLIB)
+             CLROUTQ    &OUTQLIB/&OUTQ /*review: lab4*/
+             ADDLIBLE   SENECAPAY
+             MONMSG     MSGID(CPF0000)
+             SNDUSRMSG  MSG('1 - Day Shift, 2 - Afternoon Shift, 3 - Night Shift, 4 - All +
+                          Shifts, 5 - EXIT') MSGRPY(&SHIFT)
+             /*This SNDUSRMRG is itself a given command string for use without a display file*/
+             /*exactly why it is here*/
+
+             DOWHILE    (&SHIFT *NE '5')
+                SELECT
+                   WHEN       (&SHIFT = '1') DO
+                      CHGVAR     &SHIFTTYPE 'D A Y  S H I F T'
+                      OVRPRTF    FILE(PAYRPT2) SPLFNAME(DAYSHIFT)
+                      OVRDBF     SHIFTWEEK DAYS
+                      CALL       PGM(PAYROLLPG2) PARM(&SHIFTTYPE)
+                      DSPSPLF    DAYSHIFT SPLNBR(*LAST)
+                   ENDDO
+
+                   WHEN       (&SHIFT = '2') DO
+                      CHGVAR     &SHIFTTYPE 'A F T E R N O O N  S H I F T'
+                      OVRPRTF    FILE(PAYRPT2) SPLFNAME(AFTRNSHIFT)
+                      OVRDBF     SHIFTWEEK AFTERNOONS
+                      CALL       PGM(PAYROLLPG2) PARM(&SHIFTTYPE)
+                      DSPSPLF    AFTRNSHIFT SPLNBR(*LAST)
+                   ENDDO
+
+                   WHEN       (&SHIFT = '3') DO
+                      CHGVAR     &SHIFTTYPE 'N I G H T  S H I F T'
+                      OVRPRTF    FILE(PAYRPT2) SPLFNAME(NIGHTSHIFT)
+                      OVRDBF     SHIFTWEEK NIGHTS
+                      CALL       PGM(PAYROLLPG2) PARM(&SHIFTTYPE)
+                      DSPSPLF    NIGHTSHIFT SPLNBR(*LAST)
+                   ENDDO
+
+                   WHEN       (&SHIFT = '4') DO
+                      CHGVAR     &SHIFTTYPE 'A L L  S H I F T S'
+                      OVRPRTF    FILE(PAYRPT2) SPLFNAME(ALLSHIFTS)
+                      OVRDBF     SHIFTWEEK ALLSHIFTS
+                      CALL       PGM(PAYROLLPG2) PARM(&SHIFTTYPE)
+                      DSPSPLF    ALLSHIFTS SPLNBR(*LAST)
+                   ENDDO
+
+                   WHEN       (&SHIFT *NE '5') DO
+                      SNDUSRMSG  MSG(&SHIFT *CAT ' is an invalid selection. Press the enter + +
+                                   key.')
+                   ENDDO
+                ENDSELECT
+                SNDUSRMSG  MSG('1 - Day Shift, 2 - Afternoon Shift, 3 - Night Shift, 4 - All +
+                             Shifts, 5 - EXIT') MSGRPY(&SHIFT)
+             ENDDO
+             SNDPGMMSG  MSG('Okay to clear out an output queue in school - Never at work in +
+                          production')
+             WRKOUTQ    &OUTQLIB/&OUTQ
+             ENDPGM
