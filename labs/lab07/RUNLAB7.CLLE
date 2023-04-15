@@ -1,0 +1,33 @@
+             PGM
+             DLTF       BCUB29/SALESSTAF2
+             MONMSG     MSGID(CPF2105)
+             CPYF       FROMFILE(BCI433LIB/SALESSTAFF) +
+                          TOFILE(BCUB29/SALESSTAF2) MBROPT(*REPLACE) +
+                          CRTFILE(*YES)
+
+             ADDLIBLE   BCI433LIB
+             MONMSG     MSGID(CPF0000)
+             CLROUTQ    BC435B29
+
+             OVRPRTF    FILE(QPQUPRFIL) SPLFNAME(BEFORE_UPD)
+             RUNQRY     *NONE BCUB29/SALESSTAF2 *PRINTER
+
+             OVRPRTF    FILE(QPQUPRFIL) SPLFNAME(SALESTRANS)
+             RUNQRY     *NONE BCI433LIB/SALESTRANS *PRINTER
+
+             OVRDBF     SALESSTAF2 BCUB29/SALESSTAF2
+             CALL       SLSTRNPGM
+
+             OVRPRTF    FILE(QPQUPRFIL) SPLFNAME(AFTER_UPD)
+             RUNQRY     *NONE BCUB29/SALESSTAF2 *PRINTER
+
+             DSPSPLF    BEFORE_UPD
+             DSPSPLF    SALESTRANS
+             DSPSPLF    UPDREPORT
+             DSPSPLF    AFTER_UPD
+
+             WRKOUTQ    BC435B29
+
+             DSPJRN     JRN(BCUB29/QSQJRN) FILE(BCUB29/SALESSTAF2)
+
+             ENDPGM
