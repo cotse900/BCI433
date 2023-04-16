@@ -120,3 +120,24 @@ CPYF       FROMFILE(BCI433LIB/SALESSTAFF) +
            CRTFILE(*YES)
 ```
 - The CLLE has a line on ```DSPJRN``` display journal.
+
+# lab8
+- UDF
+- Set out the prototype, the main code, and the UDF with matching data types in the display file.
+- ```CRTPRGMOD``` for both main code and UDF. Never compile the prototype.
+- ```CRTPGM``` + module name + ```module(main code UDF)```
+
+# lab9a
+- embedded SQL ```.sqlrpgle``` file format
+- printer files are given
+- Declare files like in lab6
+- Declare data structure for host variables from data file ```DCL-DS CONTACTS23 EXT END-DS;```
+- Declare standalone variables
+```
+DCL-S INDLDCalled BINDEC(4:0);
+DCL-S INDNextCDate BINDEC(4:0);
+DCL-S Dummy  Zoned(1);
+```
+- In the main routine, there is ```HIGHLIGHT``` which is an arrow if it is ```OldestDate``` or else blank. It is mainly on writing in ```newpage```, ```rptline```, and ```summary```.
+- Subroutines: ```SQLSelect``` and ```SummaryInfo```
+- We use the SQL command ```EXEC SQL``` in RPG
