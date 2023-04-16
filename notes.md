@@ -140,4 +140,16 @@ DCL-S Dummy  Zoned(1);
 ```
 - In the main routine, there is ```HIGHLIGHT``` which is an arrow if it is ```OldestDate``` or else blank. It is mainly on writing in ```newpage```, ```rptline```, and ```summary```.
 - Subroutines: ```SQLSelect``` and ```SummaryInfo```
-- We use the SQL command ```EXEC SQL``` in RPG
+- We use the SQL command ```EXEC SQL``` in RPG.
+- Like in previous labs, retrieve column fields from the data file and use ```select``` (recall DBS311 content stored procedures and functions) to select fields ```into``` the the local variables which are preceded by ```:```. See code for reference.
+- However, the twist is we need to communicate with AS400's SQL functionalities. Refer to lab9 for ```SQLNotes```. When ```SQLState``` is of a certain numerical code (but as strings), you need set fields for errors/match not found/warning, etc.
+- In ```SummaryInfo```, you have a similar subroutine but this time you calculate totals and number of unknowns using ```COUNT(*)```. Here, the error code in SQL is ```SQLCODE <> 0) or (SQLWN0 = 'W')```, while if there is a matching oldest/most recent date, you need to add ```(OR) SQLWN0 = '0'``` for a matching record.
+- Lastly, there is a given command for showing user, timestamp and server.
+```
+EXEC SQL
+   SELECT USER, CURRENT TIMESTAMP, CURRENT SERVER
+   INTO :USER, :TIMESTAMP, :SERVER
+   FROM SYSIBM/SYSDUMMY1;
+ENDSR;
+```
+- Lab9a's ```phonesqlh``` has no parameter. If you compile in ACS without a message, it compiles but the result only shows in spooled file. Check for discrepancies.
