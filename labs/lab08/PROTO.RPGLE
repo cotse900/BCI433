@@ -1,0 +1,3 @@
+000100230327       DCL-PR LANDTAXR Packed(8:2);
+000200230327         HousePrice Packed(7:0);
+000300230327       END-PR;
