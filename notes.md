@@ -153,3 +153,15 @@ EXEC SQL
 ENDSR;
 ```
 - Lab9a's ```phonesqlh``` has no parameter. If you compile in ACS without a message, it compiles but the result only shows in spooled file. Check for discrepancies.
+- Compile using ```CRTSQLRPGI```.
+
+# lab9b
+- Similar to 9a but this time ```orderssqlh``` has a ```LimitIn``` (double) parameter to pass, and we need to define a cursor. Also recall DBS311 or DBS501 content if you ever do.
+- Also refer to 9b code for reference. ```LimitIn``` has to be Packed(15:5) because of the EBSDIC requirement which takes a longer data length.
+- We set ```EndOfFile``` internal variable for reading and also set another data structure (DCL-DS) for SQL stuff. Notice that the order of columns is important but lab9b's doc file, or I should say the printer file itself, doesn't reflect the exact order. If you use the wrong DS, you will still compile but the end product will have no data but just the headings.
+- In the main routine, half is given and the work is on matching ```spendlimit``` with ```limitin``` and ```OrderNumH``` and ```OrderNum```, as well as using ```EndOfFile```. We will use 3 subroutines.
+- ```PrepareFiles```: The column names are given in a comment. Start with ```EXEC SQL``` as usual and declare a cursor ```FOR``` a ```Select``` statement of columns (merge first name and last name also) from 3 course library files ```customer2```, ```order1```, and ```orderline``` (also given in the comment) ```where``` you would match things like customer number. End this cursor with ```FOR READ ONLY``` since we don't want to change the data.
+- After the "temporary result table is created" (this is a comment), we open the cursor to check for ```SQLCODE <> 0``` and ```SQLWN0 = 'W'``` in which case ```endoffile``` applies. This also applies in the next subroutines.
+- ```GetRow```: ```EXEC SQL```, then ```fetch next``` from the cursor above into the ```ordersrecord``` and check for end of file. Again, recall your knowledge of cursor.
+- ```WRAPUP```: Close the cursor, check for end of file, and the next ```EXEC SQL``` is on counting from ```orderline``` how many total prices are not greater than ```spendlimit``` (refer to LimitIn). When you ```call orderssqlh 10/100``` you also pass 10 or 100 as the ```spendlimit```. It must pass a number in this case.
+- Like ```phonesqlh```, ACS shows nothing on screen if it compiles but makes a spooled file with a report.
