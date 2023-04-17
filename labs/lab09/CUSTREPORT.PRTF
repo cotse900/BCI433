@@ -1,0 +1,50 @@
+     A          R REPORTITLE
+     A                                  2 28'C u s t o m e r   O r d e r s  Whe-
+     A                                      n an Extended Price Is >'
+     A            SPENDLIMIT     6  2   2 87EDTCDE(1)
+     A          R COLHEADING
+     A                                     3'Order Date'
+     A                                      SPACEB(2)
+     A                                    15'Order'
+     A                                    25' Full Name'
+     A                                    59'Part'
+     A                                    67'Quantity'
+     A                                    81'Price'
+     A                                    92'Extended'
+     A                                    15'Number'
+     A                                      SPACEB(1)
+     A                                    58'Number'
+     A                                    94'Price'
+     A                                   118'*'
+     A                                      SPACEB(1)
+     A          R NEXTCUST                  SPACEB(1)
+     A            ORDERDATE R              3
+     A                                      REFFLD(ORDER1/ORDDAT BCI433LIB/ORDE-
+     A                                      R1)
+     A            ORDERNUM  R             15REFFLD(ORDER1/ORDNUM BCI433LIB/ORDE-
+     A                                      R1)
+     A            CUSTNAME      31        23
+     A          R ORDDETAIL
+     A            PARTNUM   R             59REFFLD(ORDERLINE/OLPNUM BCI433LIB/O-
+     A                                      RDERLINE)
+     A                                      SPACEB(1)
+     A            QUANTITY  R             70REFFLD(ORDERLINE/OLNORD BCI433LIB/O-
+     A                                      RDERLINE)
+     A                                      EDTCDE(1)
+     A            QTPRICE   R             80REFFLD(ORDERLINE/OLQPRC BCI433LIB/O-
+     A                                      RDERLINE)
+     A                                      EDTCDE(1)
+     A            EXTPRICE       7  2     92EDTCDE(1)
+     A          R ORDTOTAL                  SPACEB(1)
+     A                                    78'Order Total:'
+     A            TOTALORD       7  2     91EDTCDE(1 $)
+     A                                      SPACEA(1)
+     A          R ALLORDERS                 SPACEB(1)
+     A                                    68'Total For All Orders:'
+     A            TOTALALL       8  2     90
+     A                                      EDTCDE(1 $)
+     A          R NOTINCLUDE                SPACEB(1)
+     A                                     3'Number of order lines not included-
+     A                                       in report:'
+     A            UNDERLIMIT     4  0     49EDTCDE(1)
+
