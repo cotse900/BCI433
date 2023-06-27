@@ -1,4 +1,5 @@
 # BCI433 course
+- This is my repo for my work in AS/400 including code and notes.
 - [install RDi](https://nicklitten.com/course/step-2-download-rational-developer-for-ibm-i-rdi/)
 - [official IBM page for RDi](https://www.ibm.com/support/pages/node/1115889)
 - [RDi V9.6 install 1, install 2 at IBM itself](https://www.ibm.com/resources/mrs/assets/DirectDownload?source=RATLe-DEVSYSI-EVAL&lang=en_US)
